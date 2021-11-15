@@ -142,3 +142,4 @@ export class PersonaController {
     await this.personaRepository.deleteById(id);
   }
 }
+
