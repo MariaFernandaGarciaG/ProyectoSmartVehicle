@@ -38,7 +38,9 @@ export class PersonaController {
     })
     persona: Omit<Persona, 'id'>,
   ): Promise<Persona> {
-    return this.personaRepository.create(persona);
+    let p = await this.personaRepository.create(persona);
+    
+    //return this.personaRepository.create(persona);
   }
 
   @get('/personas/count')
