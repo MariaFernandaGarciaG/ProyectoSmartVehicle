@@ -51,6 +51,20 @@ export class Usuario extends Entity {
   })
   permisos: string;
 
+  @property({
+    type: 'string',
+  })
+  clienteId?: string;
+
+  @property({
+    type: 'string',
+  })
+  asesorId?: string;
+
+  @property({
+    type: 'string',
+  })
+  administradorId?: string;
 
   constructor(data?: Partial<Usuario>) {
     super(data);
