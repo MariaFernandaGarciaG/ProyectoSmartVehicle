@@ -1,5 +1,4 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
-import {Usuario} from './usuario.model';
 import {Cliente} from './cliente.model';
 import {Pedido} from './pedido.model';
 
@@ -48,8 +47,11 @@ export class Asesor extends Entity {
   })
   email: string;
 
-  @hasOne(() => Usuario)
-  usuario: Usuario;
+  @property({
+    type: 'string',
+    required: true,
+  })
+  pasword: string;
 
   @hasMany(() => Cliente)
   clientes: Cliente[];

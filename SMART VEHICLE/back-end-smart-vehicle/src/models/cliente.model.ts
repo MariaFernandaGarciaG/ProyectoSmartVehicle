@@ -1,6 +1,5 @@
 import {Entity, model, property, hasMany, hasOne} from '@loopback/repository';
 import {Producto} from './producto.model';
-import {Usuario} from './usuario.model';
 
 @model()
 export class Cliente extends Entity {
@@ -47,11 +46,14 @@ export class Cliente extends Entity {
   })
   email: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  pasword: string;
+
   @hasMany(() => Producto)
   productos: Producto[];
-
-  @hasOne(() => Usuario)
-  usuario: Usuario;
 
   @property({
     type: 'string',

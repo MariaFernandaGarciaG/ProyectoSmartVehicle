@@ -1,5 +1,4 @@
 import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
-import {Usuario} from './usuario.model';
 import {Producto} from './producto.model';
 
 @model()
@@ -47,8 +46,11 @@ export class Administrador extends Entity {
   })
   direccion: string;
 
-  @hasOne(() => Usuario)
-  usuario: Usuario;
+  @property({
+    type: 'string',
+    required: true,
+  })
+  pasword: string;
 
   @hasMany(() => Producto)
   productos: Producto[];
