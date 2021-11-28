@@ -1,3 +1,4 @@
+import { service } from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -19,11 +20,14 @@ import {
 } from '@loopback/rest';
 import {Asesor} from '../models';
 import {AsesorRepository} from '../repositories';
+import { AutenticacionService } from '../services';
 
 export class AsesorController {
   constructor(
     @repository(AsesorRepository)
     public asesorRepository : AsesorRepository,
+    @service(AutenticacionService)
+    public servicioAutenticacion: AutenticacionService
   ) {}
 
   @post('/asesors')
@@ -44,7 +48,8 @@ export class AsesorController {
     })
     asesor: Omit<Asesor, 'id'>,
   ): Promise<Asesor> {
-    return this.asesorRepository.create(asesor);
+    //return this.asesorRepository.create(asesor);
+    let p = await this.asesorRepository.create(asesor);
   }
 
   @get('/asesors/count')

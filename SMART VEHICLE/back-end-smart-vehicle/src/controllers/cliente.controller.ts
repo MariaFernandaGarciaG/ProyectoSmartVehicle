@@ -44,7 +44,7 @@ export class ClienteController {
     })
     cliente: Omit<Cliente, 'id'>,
   ): Promise<Cliente> {
-    return this.clienteRepository.create(cliente);
+    return this.clienteRepository.create(cliente);    
   }
 
   @get('/clientes/count')

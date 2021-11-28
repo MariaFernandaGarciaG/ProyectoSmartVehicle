@@ -59,6 +59,11 @@ export class Pedido extends Entity {
   @belongsTo(() => Cliente)
   clienteId: string;
 
+  @property({
+    type: 'string',
+  })
+  asesorId?: string;
+
   constructor(data?: Partial<Pedido>) {
     super(data);
   }

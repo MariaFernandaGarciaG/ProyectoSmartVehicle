@@ -17,22 +17,22 @@ import {
 } from '@loopback/rest';
 import {
   Asesor,
-  Producto,
+  Pedido,
 } from '../models';
 import {AsesorRepository} from '../repositories';
 
-export class AsesorProductoController {
+export class AsesorPedidoController {
   constructor(
     @repository(AsesorRepository) protected asesorRepository: AsesorRepository,
   ) { }
 
-  @get('/asesors/{id}/productos', {
+  @get('/asesors/{id}/pedidos', {
     responses: {
       '200': {
-        description: 'Array of Asesor has many Producto',
+        description: 'Array of Asesor has many Pedido',
         content: {
           'application/json': {
-            schema: {type: 'array', items: getModelSchemaRef(Producto)},
+            schema: {type: 'array', items: getModelSchemaRef(Pedido)},
           },
         },
       },
@@ -40,16 +40,16 @@ export class AsesorProductoController {
   })
   async find(
     @param.path.string('id') id: string,
-    @param.query.object('filter') filter?: Filter<Producto>,
-  ): Promise<Producto[]> {
-    return this.asesorRepository.productos(id).find(filter);
+    @param.query.object('filter') filter?: Filter<Pedido>,
+  ): Promise<Pedido[]> {
+    return this.asesorRepository.pedidos(id).find(filter);
   }
 
-  @post('/asesors/{id}/productos', {
+  @post('/asesors/{id}/pedidos', {
     responses: {
       '200': {
         description: 'Asesor model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Producto)}},
+        content: {'application/json': {schema: getModelSchemaRef(Pedido)}},
       },
     },
   })
@@ -58,22 +58,22 @@ export class AsesorProductoController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Producto, {
-            title: 'NewProductoInAsesor',
+          schema: getModelSchemaRef(Pedido, {
+            title: 'NewPedidoInAsesor',
             exclude: ['id'],
             optional: ['asesorId']
           }),
         },
       },
-    }) producto: Omit<Producto, 'id'>,
-  ): Promise<Producto> {
-    return this.asesorRepository.productos(id).create(producto);
+    }) pedido: Omit<Pedido, 'id'>,
+  ): Promise<Pedido> {
+    return this.asesorRepository.pedidos(id).create(pedido);
   }
 
-  @patch('/asesors/{id}/productos', {
+  @patch('/asesors/{id}/pedidos', {
     responses: {
       '200': {
-        description: 'Asesor.Producto PATCH success count',
+        description: 'Asesor.Pedido PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -83,28 +83,28 @@ export class AsesorProductoController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Producto, {partial: true}),
+          schema: getModelSchemaRef(Pedido, {partial: true}),
         },
       },
     })
-    producto: Partial<Producto>,
-    @param.query.object('where', getWhereSchemaFor(Producto)) where?: Where<Producto>,
+    pedido: Partial<Pedido>,
+    @param.query.object('where', getWhereSchemaFor(Pedido)) where?: Where<Pedido>,
   ): Promise<Count> {
-    return this.asesorRepository.productos(id).patch(producto, where);
+    return this.asesorRepository.pedidos(id).patch(pedido, where);
   }
 
-  @del('/asesors/{id}/productos', {
+  @del('/asesors/{id}/pedidos', {
     responses: {
       '200': {
-        description: 'Asesor.Producto DELETE success count',
+        description: 'Asesor.Pedido DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async delete(
     @param.path.string('id') id: string,
-    @param.query.object('where', getWhereSchemaFor(Producto)) where?: Where<Producto>,
+    @param.query.object('where', getWhereSchemaFor(Pedido)) where?: Where<Pedido>,
   ): Promise<Count> {
-    return this.asesorRepository.productos(id).delete(where);
+    return this.asesorRepository.pedidos(id).delete(where);
   }
 }

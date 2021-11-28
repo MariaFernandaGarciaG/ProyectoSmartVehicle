@@ -8,7 +8,7 @@ export * from './asesor-usuario.controller';
 export * from './administrador-usuario.controller';
 export * from './asesor-cliente.controller';
 export * from './administrador-producto.controller';
-export * from './asesor-producto.controller';
+export * from './asesor-pedido.controller';
 export * from './cliente.controller';
 export * from './pedido.controller';
 export * from './usuario.controller';
