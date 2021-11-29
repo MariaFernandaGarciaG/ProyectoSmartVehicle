@@ -49,9 +49,9 @@ export class Asesor extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
-  pasword: string;
+  clave: string;
 
   @hasMany(() => Cliente)
   clientes: Cliente[];

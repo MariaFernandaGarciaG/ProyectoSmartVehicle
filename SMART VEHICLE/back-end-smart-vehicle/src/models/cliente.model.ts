@@ -50,7 +50,7 @@ export class Cliente extends Entity {
     type: 'string',
     required: true,
   })
-  pasword: string;
+  clave: string;
 
   @hasMany(() => Producto)
   productos: Producto[];

@@ -21,6 +21,7 @@ import {
 import {Asesor} from '../models';
 import {AsesorRepository} from '../repositories';
 import { AutenticacionService } from '../services';
+const fetch = require("node-fetch");
 
 export class AsesorController {
   constructor(
@@ -48,8 +49,23 @@ export class AsesorController {
     })
     asesor: Omit<Asesor, 'id'>,
   ): Promise<Asesor> {
+    let clave = this.servicioAutenticacion.GenerarCalve();
+    let claveCifrada = this.servicioAutenticacion.CifrarClave(clave);
+    asesor.clave = claveCifrada;
     //return this.asesorRepository.create(asesor);
     let p = await this.asesorRepository.create(asesor);
+
+    // enviar correo al usuario designado
+
+    let destino = asesor.email;
+    let asunto = 'registro exitoso';
+    let contenido = `Hola ${asesor.nombre}, nombre usuario: ${asesor.email} - contraseña: ${clave}`;
+    fetch(`http://127.0.0.1:5000/envioemail?correo_destino=${destino}&asunto=${asunto}&mensaje=${contenido}`)
+      .then((data: any) =>{
+        console.log(data);
+      })
+      return p;
+
   }
 
   @get('/asesors/count')
