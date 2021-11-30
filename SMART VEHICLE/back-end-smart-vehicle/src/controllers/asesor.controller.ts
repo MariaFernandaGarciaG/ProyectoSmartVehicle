@@ -17,8 +17,10 @@ import {
   del,
   requestBody,
   response,
+  HttpErrors,
 } from '@loopback/rest';
-import {Asesor} from '../models';
+import { Llaves } from '../config/llaves';
+import {Asesor, Credenciales} from '../models';
 import {AsesorRepository} from '../repositories';
 import { AutenticacionService } from '../services';
 const fetch = require("node-fetch");
@@ -30,6 +32,33 @@ export class AsesorController {
     @service(AutenticacionService)
     public servicioAutenticacion: AutenticacionService
   ) {}
+
+  @post("/identificarAsesor",{
+    responses:{
+      '200':{
+        description: "Identificar usuarios"
+      }
+    }
+  })
+  async identificarAsesor(
+    @requestBody() credenciales: Credenciales
+  ){
+    let p = await this.servicioAutenticacion.IdentificacionUsuario(credenciales.usuario,credenciales.clave);
+    if(p){
+      let token = this.servicioAutenticacion.GenerarTokenJMT(p);
+      return {
+        datos:{
+          nombre: p.nombre,
+          email: p.email,
+          id: p.id
+        },
+        tok : token
+      }
+    }else{
+      throw new HttpErrors[401]("Datos incorrectos");
+    }
+
+  }
 
   @post('/asesors')
   @response(200, {
@@ -60,7 +89,7 @@ export class AsesorController {
     let destino = asesor.email;
     let asunto = 'registro exitoso';
     let contenido = `Hola ${asesor.nombre}, nombre usuario: ${asesor.email} - contraseña: ${clave}`;
-    fetch(`http://127.0.0.1:5000/envioemail?correo_destino=${destino}&asunto=${asunto}&mensaje=${contenido}`)
+    fetch(`${Llaves.urlServicioNotificaciones}/envioemail?correo_destino=${destino}&asunto=${asunto}&mensaje=${contenido}`)
       .then((data: any) =>{
         console.log(data);
       })
