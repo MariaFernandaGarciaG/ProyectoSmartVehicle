@@ -52,12 +52,12 @@ export class Producto extends Entity {
     type: 'string',
   })
   administradorId?: string;
-/*
+
   @property({
     type: 'string',
   })
   asesorId?: string;
-*/
+
   constructor(data?: Partial<Producto>) {
     super(data);
   }
