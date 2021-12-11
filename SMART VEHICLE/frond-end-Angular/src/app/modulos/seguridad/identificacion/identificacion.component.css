@@ -18,7 +18,7 @@
     border-radius: 3px;
     box-sizing: border-box;
   }
-  #username,#password{
+  #correo,#contraseña{
    margin-left: 20px;
    margin-right: 20px;
   }
