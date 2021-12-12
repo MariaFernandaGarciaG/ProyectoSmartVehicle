@@ -15,15 +15,17 @@ datosUsuarioSesion = new BehaviorSubject<ModeloIdentificar>(new ModeloIdentifica
   Identificar(usuario: string, clave: string): Observable<ModeloIdentificar>{
     return this.http.post<ModeloIdentificar>(`${this.url}/identificarAsesor`, {
       usuario: usuario,
-      clave: clave,
+      clave: clave
     },{
       headers: new HttpHeaders({
       })
     })
   }
   AlmacenarSesion(datos: ModeloIdentificar){
+    datos.estaIdentificado = true;
     let stringDatos = JSON.stringify(datos);
     localStorage.setItem("datosSesion",stringDatos);
+    this.RefrescarDatosSesion(datos);
   }
 
   ObtenerInformacionSesion(){
