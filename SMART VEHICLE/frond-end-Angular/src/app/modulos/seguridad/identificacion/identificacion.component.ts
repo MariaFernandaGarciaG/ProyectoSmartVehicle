@@ -13,7 +13,7 @@ export class IdentificacionComponent implements OnInit {
   fgValidador: FormGroup = this.fb.group(
   {
     'usuario':['',[Validators.required, Validators.email]],
-    'contraseña':['',[Validators.required]]
+    'clave':['',[Validators.required]]
   }
   );
 
@@ -26,11 +26,12 @@ export class IdentificacionComponent implements OnInit {
   }
   IdentificarUsuario(){
     let usuario = this.fgValidador.controls["usuario"].value;
-    let contraseña = this.fgValidador.controls["contraseña"].value;
+    let clave = this.fgValidador.controls["clave"].value;
     //alert("usuario"+usuario+ "--" + "contrañseña"+contraseña);
-    let contraseñacifrada = cryptoJS.MD5(contraseña).toString();
-    this.servicioSeguridad.Identificar(usuario, contraseñacifrada).subscribe((datos:any) => {
-      alert ("Asesor existe");
+    let claveCifrada = cryptoJS.MD5(clave).toString();
+    this.servicioSeguridad.Identificar(usuario, claveCifrada).subscribe((datos:any) => {
+      //alert ("Asesor existe");
+      this.servicioSeguridad.AlmacenarSesion(datos);
     },(error: any) => {
       alert("Asesor no registrado");
     })
