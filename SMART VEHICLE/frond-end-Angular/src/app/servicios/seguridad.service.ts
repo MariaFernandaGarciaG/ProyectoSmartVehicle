@@ -7,7 +7,7 @@ import { ModeloIdentificar } from '../modelos/identificar.modelo';
   providedIn: 'root'
 })
 export class SeguridadService {
-url = 'http:/localhost:3000';
+url = 'http://localhost:3000';
 datosUsuarioSesion = new BehaviorSubject<ModeloIdentificar>(new ModeloIdentificar());
 
   constructor(private http: HttpClient) { }
