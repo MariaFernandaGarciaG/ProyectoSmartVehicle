@@ -1,1 +1,28 @@
-<p>buscar-producto works!</p>
+<a routerLink="/administracion/crear-producto"class="btn">Adicionar producto</a>
+
+<table class="table responsive">
+    <thead>
+        <tr>
+            <th>tipo</th>
+            <th>nombre</th>
+            <th>placa</th>
+            <th>marca</th>
+            <th>cantidadPasajeros</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    ><tbody>
+        <tr *ngFor="let p of listadoRegistros">
+            <td>{{p.tipo}}</td>
+            <td>{{p.nombre}}</td>
+            <td>{{p.placa}}</td>
+            <td>{{p.marca}}</td>
+            <td>{{p.cantidadPasajeros}}</td>
+            <td>
+                <a routerLink="/administracion/editar-producto/{{p.id}}"class="btn">Editar</a>
+            </td>
+            <td><a routerLink="/administracion/eliminar-producto/{{p.id}}"class="btn">Eliminar</a></td>
+        </tr>
+    </tbody>
+</table>

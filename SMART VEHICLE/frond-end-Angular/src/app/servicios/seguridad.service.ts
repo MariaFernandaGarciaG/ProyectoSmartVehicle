@@ -62,4 +62,14 @@ datosUsuarioSesion = new BehaviorSubject<ModeloIdentificar>(new ModeloIdentifica
   ObtenerDatosUsuarioEnSesion():any{
     return this.datosUsuarioSesion.asObservable();
   }
+
+  ObtenerToken(){
+    let datosString = localStorage.getItem("datosSesion");
+    if(datosString){
+      let datos = JSON.parse(datosString);
+      return datos.tok;
+    }else{
+      return '';
+    }
+  }
 }

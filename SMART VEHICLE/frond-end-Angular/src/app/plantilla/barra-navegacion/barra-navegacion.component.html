@@ -4,7 +4,7 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li *ngIf="seInicioSesion"><a routerLink="/administracion/persona/asesor">Asesor</a></li>
-        <li *ngIf="seInicioSesion"><a routerLink="/administracion/producto">Producto</a></li>
+        <li *ngIf="seInicioSesion"><a routerLink="/administracion/listar-productos">Productos</a></li>
         <li *ngIf="seInicioSesion"><a routerLink="/pedidos">Crear pedido</a></li>
         <li *ngIf="seInicioSesion"><a routerLink="/seguridad/cambio-clave">Cambier clave</a></li>
         <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/identificacion">Login</a></li>
@@ -16,7 +16,7 @@
 
   <ul class="sidenav" id="mobile-demo">
     <li *ngIf="seInicioSesion"><a routerLink="/administracion/persona/asesor">Asesor</a></li>
-    <li *ngIf="seInicioSesion"><a routerLink="/administracion/producto">Producto</a></li>
+    <li *ngIf="seInicioSesion"><a routerLink="/administracion/listar-productos">Productos</a></li>
     <li *ngIf="seInicioSesion"><a routerLink="/pedidos">Crear pedido</a></li>
     <li *ngIf="seInicioSesion"><a routerLink="/seguridad/cambio-clave">Cambier clave</a></li>
     <li *ngIf="!seInicioSesion"><a routerLink="/seguridad/identificacion">Login</a></li>

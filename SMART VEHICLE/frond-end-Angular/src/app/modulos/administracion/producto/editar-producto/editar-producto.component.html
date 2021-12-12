@@ -1,1 +1,36 @@
-<p>editar-producto works!</p>
+//Editar html
+<div class="row">
+    <h4 class="center-align">Editar Producto</h4>
+    <article class="col s6 offset-s3">
+        <form [formGroup]="fgValidador2" (ngSubmit)="EditarProducto()">
+            <input type="hidden" formControlName="id" />
+            <div class="input-field">
+                <label for="tipo" class="active">Tipo</label>
+                <input formControlName="tipo" type="text" name="tipo" required/>
+            </div>
+            <div class="input-field">
+                <label for="nombre" class="active">Nombre</label>
+                <input formControlName="nombre" type="text" name="nombre" required/>
+            </div>
+            <div class="input-field">
+                <label for="placa" class="active">Placa</label>
+                <input formControlName="placa" type="text" name="placa" required/>
+            </div>
+            <div class="input-field">
+                <label for="marca" class="active">Marca</label>
+                <input formControlName="marca" type="text" name="marca" required/>
+            </div>
+            <div class="input-field">
+                <label for="cantidadPasajeros" class="active">CantidadPasajeros</label>
+                <input formControlName="cantidadPasajeros" type="text" name="cantidadPasajeros" required/>
+            </div>
+
+            <p class="center-align">
+                <button [disabled]="!fgValidador2.valid" class="waves-effect waves-light btn" type="submit">
+                    <i class="material-icons right">send</i>Editar
+                </button>
+            </p>
+        </form>
+
+    </article>
+</div>
